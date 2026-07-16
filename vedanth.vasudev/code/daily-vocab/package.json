@@ -1,0 +1,41 @@
+{
+  "name": "daily-vocab",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@bacons/apple-targets": "^4.0.7",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "babel-preset-expo": "~57.0.0",
+    "expo": "~57.0.6",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.0",
+    "react-native-reanimated": "4.5.0",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-worklets": "0.10.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "tsx": "^4.23.1",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.10",
+    "zod": "^4.4.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "node scripts/ensure-macos.js \"npm run ios\" && expo run:ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "content:validate": "tsx content/tools/validate-catalog.ts",
+    "content:generate": "tsx content/tools/generate-full-catalogs.ts",
+    "content:sync-android": "mkdir -p modules/widget-bridge/android/src/main/assets/words && cp content/words/*.json modules/widget-bridge/android/src/main/assets/words/",
+    "content:validate:strict": "tsx content/tools/validate-catalog.ts --strict-count",
+    "ios:device": "node scripts/ensure-macos.js \"npm run ios:device\" && expo run:ios",
+    "content:sync-ios-widget": "mkdir -p targets/DailyVocabWidget/assets && cp content/words/*.json targets/DailyVocabWidget/assets/",
+    "prebuild:ios": "node scripts/ensure-macos.js \"npm run prebuild:ios\" && expo prebuild -p ios",
+    "content:sync": "npm run content:sync-android && npm run content:sync-ios-widget"
+  },
+  "private": true
+}

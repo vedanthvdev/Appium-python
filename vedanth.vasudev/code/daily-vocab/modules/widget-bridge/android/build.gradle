@@ -1,0 +1,28 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.widgetbridge'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.widgetbridge"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+  buildFeatures {
+    compose true
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  implementation "androidx.glance:glance-appwidget:1.1.1"
+  implementation "androidx.glance:glance-material3:1.1.1"
+  implementation "androidx.work:work-runtime-ktx:2.9.1"
+  implementation "androidx.compose.runtime:runtime:1.7.6"
+}

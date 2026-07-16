@@ -1,0 +1,29 @@
+name: Daily Vocab
+
+on:
+  push:
+    paths:
+      - 'vedanth.vasudev/code/daily-vocab/**'
+      - '.github/workflows/daily-vocab.yml'
+  pull_request:
+    paths:
+      - 'vedanth.vasudev/code/daily-vocab/**'
+      - '.github/workflows/daily-vocab.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vedanth.vasudev/code/daily-vocab
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: vedanth.vasudev/code/daily-vocab/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run content:validate:strict
